@@ -1,0 +1,10 @@
+{
+  "name": "zst-javascript-game",
+  "version": "1.0.0",
+  "description": "A game made as a final grade project for 2026.",
+  "main": "index.html",
+  "repository": "git@github.com:lunarwanderer13/zst-javascript-game.git",
+  "author": "lunarwanderer13 <lunarwanderer13@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
