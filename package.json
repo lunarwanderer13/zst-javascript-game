@@ -1,10 +1,20 @@
 {
-  "name": "zst-javascript-game",
-  "version": "1.0.0",
-  "description": "A game made as a final grade project for 2026.",
-  "main": "index.html",
-  "repository": "git@github.com:lunarwanderer13/zst-javascript-game.git",
-  "author": "lunarwanderer13 <lunarwanderer13@gmail.com>",
-  "license": "MIT",
-  "private": false
+    "name": "zst-javascript-game",
+    "version": "1.0.0",
+    "description": "A game made as a final grade project for 2026.",
+    "main": "index.html",
+    "repository": "git@github.com:lunarwanderer13/zst-javascript-game.git",
+    "author": "lunarwanderer13 <lunarwanderer13@gmail.com>",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "serve": "serve .",
+        "dev": "yarn run build && yarn run serve"
+    },
+    "devDependencies": {
+        "serve": "^14.2.6",
+        "typescript": "^6.0.2"
+    }
 }
