@@ -1,5 +1,3 @@
 "use strict";
-const hello = document.createElement("h1");
-hello.textContent = "Hello, World!";
-document.body.appendChild(hello);
+console.log("Hello, World!");
 //# sourceMappingURL=game.js.map

@@ -1,0 +1,66 @@
+@font-face {
+    font-family: "Fredoka One";
+    src: url(../fonts/fredoka-one/FredokaOne-Regular.ttf);
+    font-size: normal;
+    font-weight: 300;
+}
+
+* {
+    font-family: "Fredoka One", "Comic Sans MS", sans-serif, serif;
+    text-align: center;
+}
+
+body, main, main header, main div.game-container, div.button-container, div.button-container button {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    height: 100vh;
+    justify-content: space-between;
+    background-color: whitesmoke;
+}
+
+main {
+    height: 60vh;
+    justify-content: space-between;
+    background-color: red;
+}
+
+main header {
+    height: 10vh;
+    flex-direction: row;
+    background-color: blue;
+}
+
+main header h1 {
+    width: 70vw;
+    font-size: 5vh;
+}
+
+main header h3 {
+    width: 30vw;
+    font-size: 2.5vh;
+}
+
+main div.game-container {
+    height: 50vh;
+    background-color: green;
+}
+
+div.button-container {
+    height: 30vh;
+    background-color: lime;
+}
+
+div.button-container button {
+    width: 80vw;
+    height: 20vh;
+    margin: 5vh 10vw;
+    font-size: 5vh;
+}
