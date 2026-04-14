@@ -1,3 +1,11 @@
+:root {
+    --primary-bg-color: #fcfcfc;
+    --accent-bg-color: #ececec;
+    --text-color: #000000;
+    --border: 1px solid #000000;
+    --border-radius: 5vh;
+}
+
 @font-face {
     font-family: "Fredoka One";
     src: url(../fonts/fredoka-one/FredokaOne-Regular.ttf);
@@ -8,9 +16,12 @@
 * {
     font-family: "Fredoka One", "Comic Sans MS", sans-serif, serif;
     text-align: center;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-body, main, main header, main div.game-container, div.button-container, div.button-container button {
+body, main, main header, main header h1, main header h3, main div.game-container, div.button-container, div.button-container button {
     width: 100vw;
     margin: 0;
     padding: 0;
@@ -22,45 +33,61 @@ body, main, main header, main div.game-container, div.button-container, div.butt
 
 body {
     height: 100vh;
-    justify-content: space-between;
-    background-color: whitesmoke;
+    justify-content: space-evenly;
+    background-color: var(--primary-bg-color);
 }
 
 main {
     height: 60vh;
     justify-content: space-between;
-    background-color: red;
 }
 
 main header {
+    width: 90vw;
     height: 10vh;
     flex-direction: row;
-    background-color: blue;
+    justify-content: center;
+    gap: 10vw;
 }
 
 main header h1 {
-    width: 70vw;
-    font-size: 5vh;
+    width: 20vh;
+    height: 10vh;
+}
+
+main header h1 img {
+    height: 7.5vh;
 }
 
 main header h3 {
-    width: 30vw;
+    width: 20vh;
+    height: 5vh;
     font-size: 2.5vh;
+    background-color: var(--accent-bg-color);
+    outline: var(--border);
+    border-radius: var(--border-radius);
 }
 
 main div.game-container {
+    width: 90vw;
     height: 50vh;
-    background-color: green;
+    background-color: var(--accent-bg-color);
+    outline: var(--border);
+    border-radius: var(--border-radius);
 }
 
 div.button-container {
     height: 30vh;
-    background-color: lime;
 }
 
 div.button-container button {
+    all: unset;
     width: 80vw;
     height: 20vh;
     margin: 5vh 10vw;
     font-size: 5vh;
+    background-color: var(--accent-bg-color);
+    outline: var(--border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
 }
