@@ -48,5 +48,5 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-**Made with 💜 by me (https://github.com/lunarwanderer13) & John (https://github.com/john_pine_cone) 🌙**
+**Made with 💜 by [Lunar](https://github.com/lunarwanderer13) & [John](https://github.com/john-pine-cone) 🌙**
 
