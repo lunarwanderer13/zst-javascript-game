@@ -7,6 +7,22 @@ function main(): void {
     if (!game_container) return
 
     const player: Player = new Player(game_container)
+
+    let game_running: boolean = false
+
+    const jump_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#jump-button")
+    if (!jump_button) return
+
+    jump_button.addEventListener("click", () => {
+        game_running = true
+        player.jump()
+    })
+
+    setInterval(() => {
+        if (game_running) {
+            player.move()
+        }
+    }, 10)
 }
 
 main()

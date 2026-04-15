@@ -5,6 +5,18 @@ function main() {
     if (!game_container)
         return;
     const player = new Player(game_container);
+    let game_running = false;
+    const jump_button = document.querySelector("button#jump-button");
+    if (!jump_button)
+        return;
+    jump_button.addEventListener("click", () => {
+        player.jump();
+    });
+    setInterval(() => {
+        if (game_running) {
+            player.move();
+        }
+    }, 10);
 }
 main();
 //# sourceMappingURL=game.js.map

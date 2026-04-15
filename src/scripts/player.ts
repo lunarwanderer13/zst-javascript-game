@@ -4,7 +4,7 @@ export default class Player {
 
     public y: number
     public velocity: number
-    public jump_force: number
+    private jump_force: number
     private sprite: string
 
     public constructor(container: HTMLDivElement) {
@@ -12,7 +12,7 @@ export default class Player {
 
         this.y = 0.5
         this.velocity = 0.0
-        this.jump_force = 1.0
+        this.jump_force = 1.5
         this.sprite = "./../../src/images/Placeholder.png"
 
         this.element = new Image()
@@ -28,13 +28,15 @@ export default class Player {
 
     private gravity(): void {
         let v: number = this.velocity
-        this.velocity = Math.min(v + 0.05, 1.0)
+        this.velocity = Math.min(v + 0.075, 1.5)
     }
 
     public move(): void {
         this.gravity()
         this.y += this.velocity
-        this.element.style.top = `${this.y * 100}%`
+        this.element.style.top = `${this.y}%`
         this.element.style.transform = `rotate(${this.velocity * 10}deg)`
+
+        console.log(`y: ${this.y}\nv: ${this.velocity}`)
     }
 }
