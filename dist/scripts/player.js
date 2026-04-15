@@ -4,7 +4,7 @@ export default class Player {
         this.y = 50.0;
         this.velocity = 0.0;
         this.jump_force = 1.5;
-        this.sprite = "./../../src/images/Placeholder.png";
+        this.sprite = "./src/images/Placeholder.png";
         this.element = new Image();
         this.element.src = this.sprite;
         this.element.alt = "Cat";
