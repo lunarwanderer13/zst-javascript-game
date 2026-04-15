@@ -39,7 +39,7 @@ body {
 
 main {
     height: 60vh;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 main header {
@@ -69,15 +69,29 @@ main header h3 {
     visibility: hidden;
 }
 
-main div.game-container {
+/*main div.game-container {
     width: 90vw;
-    height: 50vh;
+    height: 45vw;
+    max-height: 50vh;
+    aspect-ratio: 1/2;
+    background-color: var(--accent-bg-color);
+    outline: var(--border);
+    border-radius: var(--border-radius);
+}*/
+
+.game-container {
+    width: min(90vw, 100vh) !important;
+    aspect-ratio: 2 / 1;
+
+    max-height: 50vh;
+
     background-color: var(--accent-bg-color);
     outline: var(--border);
     border-radius: var(--border-radius);
 }
 
 div.button-container {
+    width: 90vw;
     height: 30vh;
 }
 
