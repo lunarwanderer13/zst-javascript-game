@@ -99,8 +99,13 @@ a.gh-badge {
     position: fixed;
     right: 1vw;
     bottom: 1vw;
-    width: 5vw;
-    height: 5vw;
+    width: max(5vw, 5vh);
+    aspect-ratio: 1 / 1;
     margin: 0;
     padding: 0;
+    border-radius: 100%;
+}
+
+a.gh-badge img {
+    border-radius: 100%;
 }
