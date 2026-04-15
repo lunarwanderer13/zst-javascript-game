@@ -66,6 +66,7 @@ main header h3 {
     background-color: var(--accent-bg-color);
     outline: var(--border);
     border-radius: var(--border-radius);
+    visibility: hidden;
 }
 
 main div.game-container {
