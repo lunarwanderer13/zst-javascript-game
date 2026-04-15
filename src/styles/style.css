@@ -33,13 +33,13 @@ body, main, main header, main header h1, main header h3, main div.game-container
 
 body {
     height: 100vh;
-    justify-content: space-evenly;
+    justify-content: start;
     background-color: var(--primary-bg-color);
 }
 
 main {
     height: 70vh;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 main header {
