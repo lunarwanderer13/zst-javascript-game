@@ -10,6 +10,10 @@ function main() {
     if (!jump_button)
         return;
     jump_button.addEventListener("click", () => {
+        if (!game_running) {
+            game_running = true;
+            jump_button.textContent = "JUMP";
+        }
         player.jump();
     });
     setInterval(() => {

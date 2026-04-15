@@ -10,7 +10,7 @@ export default class Player {
     public constructor(container: HTMLDivElement) {
         this.container = container
 
-        this.y = 0.5
+        this.y = 50.0
         this.velocity = 0.0
         this.jump_force = 1.5
         this.sprite = "./../../src/images/Placeholder.png"
