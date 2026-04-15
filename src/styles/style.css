@@ -70,12 +70,14 @@ main header h3 {
 }
 
 .game-container {
+    position: relative;
     width: min(90vw, 100vh) !important;
     aspect-ratio: 2 / 1;
     max-height: 50vh;
     background-color: var(--accent-bg-color);
     outline: var(--border);
     border-radius: var(--border-radius);
+    overflow: hidden;
 }
 
 div.button-container {
