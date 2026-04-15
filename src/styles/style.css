@@ -80,6 +80,17 @@ main header h3 {
     overflow: hidden;
 }
 
+.player {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 10%;
+    aspect-ratio: 2 / 1;
+    transform: rotate(0deg);
+    margin: 0;
+    padding: 0;
+}
+
 div.button-container {
     width: 90vw;
     height: 30vh;
