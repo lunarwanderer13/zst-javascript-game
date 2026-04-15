@@ -69,22 +69,10 @@ main header h3 {
     visibility: hidden;
 }
 
-/*main div.game-container {
-    width: 90vw;
-    height: 45vw;
-    max-height: 50vh;
-    aspect-ratio: 1/2;
-    background-color: var(--accent-bg-color);
-    outline: var(--border);
-    border-radius: var(--border-radius);
-}*/
-
 .game-container {
     width: min(90vw, 100vh) !important;
     aspect-ratio: 2 / 1;
-
     max-height: 50vh;
-
     background-color: var(--accent-bg-color);
     outline: var(--border);
     border-radius: var(--border-radius);
@@ -105,4 +93,14 @@ div.button-container button {
     outline: var(--border);
     border-radius: var(--border-radius);
     cursor: pointer;
+}
+
+a.gh-badge {
+    position: fixed;
+    right: 1vw;
+    bottom: 1vw;
+    width: 5vw;
+    height: 5vw;
+    margin: 0;
+    padding: 0;
 }
