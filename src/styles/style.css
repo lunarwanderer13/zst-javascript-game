@@ -39,7 +39,7 @@ body {
 
 main {
     height: 60vh;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 main header {
@@ -71,13 +71,14 @@ main header h3 {
 
 main div.game-container {
     width: 90vw;
-    height: 50vh;
+    height: 45vw;
     background-color: var(--accent-bg-color);
     outline: var(--border);
     border-radius: var(--border-radius);
 }
 
 div.button-container {
+    width: 90vw;
     height: 30vh;
 }
 
