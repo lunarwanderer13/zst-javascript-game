@@ -38,8 +38,8 @@ body {
 }
 
 main {
-    height: 60vh;
-    justify-content: start;
+    height: 70vh;
+    justify-content: space-between;
 }
 
 main header {
@@ -56,7 +56,7 @@ main header h1 {
 }
 
 main header h1 img {
-    height: 7.5vh;
+    height: 10vh;
 }
 
 main header h3 {
@@ -92,7 +92,8 @@ main header h3 {
 }
 
 div.button-container {
-    width: 90vw;
+    position: fixed;
+    bottom: 0;
     height: 30vh;
 }
 
