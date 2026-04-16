@@ -9,12 +9,20 @@ function main() {
     const jump_button = document.querySelector("button#jump-button");
     if (!jump_button)
         return;
-    jump_button.addEventListener("click", () => {
+    function trigger_jump() {
         if (!game_running) {
             game_running = true;
-            jump_button.textContent = "JUMP";
+            if (jump_button)
+                jump_button.textContent = "JUMP";
         }
         player.jump();
+    }
+    jump_button.addEventListener("click", trigger_jump); // Button click
+    document.addEventListener("keydown", (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+            trigger_jump();
+        }
     });
     const game_loop = setInterval(() => {
         if (game_running) {
