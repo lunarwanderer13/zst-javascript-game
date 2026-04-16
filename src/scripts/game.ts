@@ -22,9 +22,15 @@ function main(): void {
         player.jump()
     })
 
-    setInterval(() => {
+    const game_loop: number = setInterval(() => {
         if (game_running) {
             player.move()
+
+            if (player.y < 0 || player.y > 100) {
+                player.die()
+                console.log("game over")
+                clearInterval(game_loop)
+            }
         }
     }, 10)
 }
