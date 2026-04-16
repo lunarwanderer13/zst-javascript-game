@@ -19,6 +19,7 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-user-drag: none;
+    touch-action: manipulation;
 }
 
 body, main, main header, main header h1, main header h3, main div.game-container, div.button-container, div.button-container button {
