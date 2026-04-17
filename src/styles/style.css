@@ -24,7 +24,7 @@
     touch-action: manipulation;
 }
 
-body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container, div.button-container button {
+body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container {
     width: 100vw;
     margin: 0;
     padding: 0;
@@ -94,6 +94,18 @@ div.modal-body p:first-of-type {
 
 div.modal-body p b {
     font-size: 1.5em;
+}
+
+div.modal-body button {
+    all: unset;
+    width: 40vw;
+    height: 10vh;
+    font-size: 2.5vh;
+    background-color: var(--accent-bg-color);
+    outline: var(--border);
+    border-radius: var(--border-radius);
+    margin-bottom: 10vh;
+    cursor: pointer;
 }
 
 main {
