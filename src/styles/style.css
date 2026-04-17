@@ -1,6 +1,7 @@
 :root {
     --primary-bg-color: #fcfcfc;
     --accent-bg-color: #ececec;
+    --modal-bg-color: #00000033;
     --text-color: #000000;
     --border: 1px solid #000000;
     --border-radius: 5vh;
@@ -16,13 +17,14 @@
 * {
     font-family: "Fredoka One", "Comic Sans MS", sans-serif, serif;
     text-align: center;
+    overflow: hidden;
     -webkit-user-select: none;
     user-select: none;
     -webkit-user-drag: none;
     touch-action: manipulation;
 }
 
-body, main, main header, main header h1, main header h3, main div.game-container, div.button-container, div.button-container button {
+body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container, div.button-container button {
     width: 100vw;
     margin: 0;
     padding: 0;
@@ -38,6 +40,62 @@ body {
     background-color: var(--primary-bg-color);
 }
 
+div.modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background-color: var(--modal-bg-color);
+    z-index: 100;
+}
+
+div.start-modal {
+    display: flex;
+}
+
+div.end-modal {
+    display: none;
+}
+
+div.modal-body {
+    width: 80vw;
+    height: 80vh;
+    justify-content: space-between;
+    background-color: var(--primary-bg-color);
+    outline: var(--border);
+    border-radius: var(--border-radius);
+}
+
+div.modal-body section {
+    width: 70vw;
+    margin-bottom: 10vh;
+    overflow: auto;
+}
+
+div.rules-container {
+    width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+div.modal-body p {
+    width: 200px;
+    height: 100px;
+    border-right: 1px solid #000000;
+    padding: 0 1vw;
+}
+
+div.modal-body p:first-of-type {
+    border-left: 1px solid #000000;
+}
+
+div.modal-body p b {
+    font-size: 1.5em;
+}
+
 main {
     height: 70vh;
     justify-content: start;
@@ -51,12 +109,12 @@ main header {
     gap: 10vw;
 }
 
-main header h1 {
+main header h1, div.modal div h1 {
     width: 20vh;
     height: 10vh;
 }
 
-main header h1 img {
+main header h1 img, div.modal div h1 img {
     height: 10vh;
 }
 
@@ -78,7 +136,6 @@ main header h3 {
     background-color: var(--accent-bg-color);
     outline: var(--border);
     border-radius: var(--border-radius);
-    overflow: hidden;
 }
 
 .player {
@@ -119,6 +176,7 @@ a.gh-badge {
     margin: 0;
     padding: 0;
     border-radius: 100%;
+    z-index: 666;
 }
 
 a.gh-badge img {
