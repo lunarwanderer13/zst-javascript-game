@@ -9,7 +9,8 @@
 
         "strict": true,
         "sourceMap": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "removeComments": false
     },
     "include": ["src"]
 }
