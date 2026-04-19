@@ -15,6 +15,28 @@ function main(): void {
     // Pause game on load, giving the player time to read the rules and lock in
     let game_running: boolean = false
 
+    // The starting modal window
+    const start_modal: HTMLDivElement | null = document.querySelector<HTMLDivElement>("div.start-modal")
+    if(!start_modal) return
+    
+    // The starting button
+    const start_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#start-button")
+    if (!start_button) return
+
+    // Hides the starting window
+    function trigger_start(): void {
+        if (start_modal) start_modal.style.display = "none"
+    }
+
+    // Listeners for user input
+    start_button.addEventListener("click", trigger_start)            // Button click
+    document.addEventListener("keydown", (event: KeyboardEvent) => { // Space or enter press
+        if(event.code === "Space" || event.code === "Enter") {
+            event.preventDefault()
+            trigger_start()
+        }
+    })
+
     // Button used for jumping, and if the game is paused, starting the game
     const jump_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#jump-button")
     if (!jump_button) return
