@@ -1,24 +1,29 @@
+// Player class controlling the player
 export default class Player {
     constructor(container) {
         this.container = container;
-        this.alive = true;
-        this.y = 50.0;
-        this.velocity = 0.0;
+        this.alive = true; // Alive by default
+        this.y = 50.0; // Start falling from 50% height
+        this.velocity = 0.0; // Start with no velocity
         this.jump_force = 1.5;
         this.sprite = "./src/images/Placeholder.png";
+        // Create the player <img> element
+        // and append it to the game container <div> element
         this.element = new Image();
         this.element.src = this.sprite;
         this.element.alt = "Cat";
         this.element.className = "player";
         this.container.appendChild(this.element);
     }
+    // Player jump handler
     jump() {
-        this.velocity = -this.jump_force;
+        this.velocity = -this.jump_force; // Add negative force to go upward
     }
+    // Gravity handler
     gravity() {
-        let v = this.velocity;
-        this.velocity = Math.min(v + 0.075, 1.5);
+        this.velocity = Math.min(this.velocity + 0.075, 1.5); // Gradually increase the velocity, max 1.5
     }
+    // Player movement handler
     move() {
         if (!this.alive)
             return;
@@ -27,6 +32,7 @@ export default class Player {
         this.element.style.top = `${this.y}%`;
         this.element.style.transform = `rotate(${this.velocity * 10}deg)`;
     }
+    // Game over animation
     die() {
         this.alive = false;
         this.element.animate([
@@ -34,9 +40,9 @@ export default class Player {
             { offset: 0.1, left: "15%", top: `${this.y - 25.0}%`, rotate: `-45deg` }, // Bounce off slightly
             { offset: 1.0, left: "-5%", top: `${this.y + 135.0}%`, rotate: `-90deg` } // Fall down
         ], {
-            duration: 1500,
-            easing: "linear",
-            fill: "forwards"
+            duration: 1500, // 1.5s duration
+            easing: "linear", // no easing function
+            fill: "forwards" // keep changes after animtion finishes
         });
     }
 }
