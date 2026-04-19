@@ -17,7 +17,7 @@ export default class Player {
         this.velocity = 0.0 // Start with no velocity
 
         this.jump_force = 1.5
-        this.sprite = "./src/images/Placeholder.png"
+        this.sprite = "./src/images/cat.png"
 
         // Create the player <img> element
         // and append it to the game container <div> element
