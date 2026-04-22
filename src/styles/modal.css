@@ -20,7 +20,7 @@ div.modal-body {
     height: 80vh;
     justify-content: space-between;
     background-color: var(--primary-bg-color);
-    outline: var(--border);
+    border: var(--border);
     border-radius: var(--border-radius);
 }
 
@@ -60,7 +60,7 @@ div.modal-body button {
     height: 10vh;
     font-size: 2.5vh;
     background-color: var(--accent-bg-color);
-    outline: var(--border);
+    border: var(--border);
     border-radius: var(--border-radius);
     margin-bottom: 10vh;
     cursor: pointer;
