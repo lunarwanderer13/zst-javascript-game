@@ -1,6 +1,7 @@
 // Check if it's loading properly
 console.log("Hello, World!");
 import Player from "./player.js";
+import Obstacle from "./obstacle.js";
 // Game handler
 function main() {
     // The game container <div> element
@@ -11,6 +12,11 @@ function main() {
     const score_header = document.querySelector("h3");
     if (!score_header)
         return;
+    // Obstacle to be cloned
+    const original_obstacle = document.querySelector("div.obstacle");
+    if (!original_obstacle)
+        return;
+    const obstacles = [];
     // Initialize a player
     const player = new Player(game_container);
     // Pause game on load, giving the player time to read the rules and lock in
@@ -59,13 +65,22 @@ function main() {
             trigger_jump();
         }
     });
+    // Obstacle spawner loop
+    const obstacle_spawner_loop = setInterval(() => {
+        if (!game_running)
+            return;
+        let obstacle = new Obstacle(game_container, original_obstacle);
+        obstacles.push(obstacle);
+    }, 1000);
     // Main game loop
     const game_loop = setInterval(() => {
         if (game_running) {
             player.move();
+            obstacles.forEach((obstacle) => { obstacle.move(); });
             if (player.y < 0 || player.y > 100) {
                 player.die();
                 console.log("game over");
+                clearInterval(obstacle_spawner_loop); // Stop the spawning loop
                 clearInterval(game_loop); // Stop the game loop
             }
         }

@@ -3,9 +3,9 @@ export default class Player {
     constructor(container) {
         this.container = container;
         this.alive = true; // Alive by default
-        this.y = 50.0; // Start falling from 50% height
+        this.y = 47.5; // Start falling from 50% height
         this.velocity = 0.0; // Start with no velocity
-        this.jump_force = 1.5;
+        this.jump_force = 1.25;
         this.sprite = "./src/images/cat.png";
         // Create the player <img> element
         // and append it to the game container <div> element
@@ -21,7 +21,7 @@ export default class Player {
     }
     // Gravity handler
     gravity() {
-        this.velocity = Math.min(this.velocity + 0.075, 1.5); // Gradually increase the velocity, max 1.5
+        this.velocity = Math.min(this.velocity + 0.05, 1.5); // Gradually increase the velocity, max 1.5
     }
     // Player movement handler
     move() {
