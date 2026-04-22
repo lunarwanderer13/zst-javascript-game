@@ -21,8 +21,8 @@
 
 .obstacle {
     position: absolute;
-    top: -25%;
-    left: 50%;
+    top: -500%;
+    left: -500%;
     width: 5%;
     height: 150%;
     display: flex;
