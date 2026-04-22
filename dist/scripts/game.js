@@ -7,6 +7,10 @@ function main() {
     const game_container = document.querySelector(".game-container");
     if (!game_container)
         return;
+    // Score display
+    const score_header = document.querySelector("h3");
+    if (!score_header)
+        return;
     // Initialize a player
     const player = new Player(game_container);
     // Pause game on load, giving the player time to read the rules and lock in
@@ -42,6 +46,8 @@ function main() {
             game_running = true;
             if (jump_button)
                 jump_button.textContent = "JUMP";
+            if (score_header)
+                score_header.style.visibility = "visible";
         }
         player.jump();
     }

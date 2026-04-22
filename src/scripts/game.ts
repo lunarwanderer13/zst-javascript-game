@@ -9,6 +9,10 @@ function main(): void {
     const game_container: HTMLDivElement | null = document.querySelector<HTMLDivElement>(".game-container")
     if (!game_container) return
 
+    // Score display
+    const score_header: HTMLDivElement | null = document.querySelector<HTMLHeadingElement>("h3")
+    if (!score_header) return
+
     // Initialize a player
     const player: Player = new Player(game_container)
 
@@ -46,6 +50,7 @@ function main(): void {
         if (!game_running) {
             game_running = true
             if (jump_button) jump_button.textContent = "JUMP"
+            if (score_header) score_header.style.visibility = "visible"
         }
 
         player.jump()
