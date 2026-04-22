@@ -67,7 +67,7 @@ main header h3 {
     height: 5vh;
     font-size: 2.5vh;
     background-color: var(--accent-bg-color);
-    outline: var(--border);
+    border: var(--border);
     border-radius: var(--border-radius);
     visibility: hidden;
 }
@@ -85,7 +85,7 @@ div.button-container button {
     margin: 5vh 10vw;
     font-size: 5vh;
     background-color: var(--accent-bg-color);
-    outline: var(--border);
+    border: var(--border);
     border-radius: var(--border-radius);
     cursor: pointer;
 }
