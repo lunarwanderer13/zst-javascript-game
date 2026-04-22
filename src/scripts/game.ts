@@ -77,7 +77,7 @@ function main(): void {
 
         let obstacle: Obstacle = new Obstacle(game_container, original_obstacle)
         obstacles.push(obstacle)
-    }, 1000)
+    }, 2000)
 
     // Main game loop
     const game_loop: number = setInterval(() => {

@@ -71,7 +71,7 @@ function main() {
             return;
         let obstacle = new Obstacle(game_container, original_obstacle);
         obstacles.push(obstacle);
-    }, 1000);
+    }, 2000);
     // Main game loop
     const game_loop = setInterval(() => {
         if (game_running) {

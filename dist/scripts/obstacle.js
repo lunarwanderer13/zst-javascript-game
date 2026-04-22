@@ -7,7 +7,7 @@ export default class Obstacle {
         this.y = -25.0; // Starting vertical position
         this.y_offset = Math.floor(Math.random() * (51)) - 25;
         this.y += this.y_offset;
-        this.velocity = 0.125;
+        this.velocity = 0.2;
         // Clone the original element
         // and append it to the game container <div> element
         this.element = original_element.cloneNode(true);
