@@ -4,7 +4,7 @@
     aspect-ratio: 2 / 1;
     max-height: 50vh;
     background-color: var(--accent-bg-color);
-    outline: var(--border);
+    border: var(--border);
     border-radius: var(--border-radius);
 }
 
