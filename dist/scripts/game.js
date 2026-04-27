@@ -35,7 +35,7 @@ function main() {
             start_modal.style.display = "none";
     }
     // Listeners for user input
-    start_button.addEventListener("click", trigger_start); // Button click
+    start_button.addEventListener("pointerup", trigger_start); // Button click
     document.addEventListener("keydown", (event) => {
         if (event.code === "Space" || event.code === "Enter") {
             event.preventDefault();
@@ -58,7 +58,7 @@ function main() {
         player.jump();
     }
     // Listeners for user input
-    jump_button.addEventListener("click", trigger_jump); // Button click
+    jump_button.addEventListener("pointerdown", trigger_jump); // Button click
     document.addEventListener("keydown", (event) => {
         if (event.code === "Space") {
             event.preventDefault();
