@@ -65,6 +65,9 @@ function main() {
             trigger_jump();
         }
     });
+    document.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+    });
     // Obstacle spawner loop
     const obstacle_spawner_loop = setInterval(() => {
         if (!game_running)
@@ -72,11 +75,15 @@ function main() {
         let obstacle = new Obstacle(game_container, original_obstacle);
         obstacles.push(obstacle);
     }, 2000);
+    let background_pos = 0;
     // Main game loop
     const game_loop = setInterval(() => {
         if (game_running) {
             player.move();
             obstacles.forEach((obstacle) => { obstacle.move(); });
+            // Move the background
+            background_pos++;
+            player.container.style.backgroundPositionX = `${background_pos}px`;
             if (player.y < 0 || player.y > 100) {
                 player.die();
                 console.log("game over");

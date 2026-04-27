@@ -63,12 +63,15 @@ function main(): void {
     }
 
     // Listeners for user input
-    jump_button.addEventListener("pointerdown", trigger_jump)        // Button click
-    document.addEventListener("keydown", (event: KeyboardEvent) => { // Space press
+    jump_button.addEventListener("pointerdown", trigger_jump)         // Button click
+    document.addEventListener("keydown", (event: KeyboardEvent) => {  // Space press
         if (event.code === "Space") {
             event.preventDefault()
             trigger_jump()
         }
+    })
+    document.addEventListener("contextmenu", (event: MouseEvent) => { // Context menu
+        event.preventDefault()
     })
 
     // Obstacle spawner loop
@@ -79,11 +82,17 @@ function main(): void {
         obstacles.push(obstacle)
     }, 2000)
 
+    let background_pos = 0
+
     // Main game loop
     const game_loop: number = setInterval(() => {
         if (game_running) {
             player.move()
             obstacles.forEach((obstacle: Obstacle) => { obstacle.move() })
+
+            // Move the background
+            background_pos++
+            player.container.style.backgroundPositionX = `${background_pos}px`
 
             if (player.y < 0 || player.y > 100) {
                 player.die()
