@@ -34,7 +34,7 @@ function main() {
     function trigger_start() {
         if (start_modal)
             start_modal.style.display = "none";
-        game_started = true;
+        setTimeout(() => { game_started = true; }, 50);
     }
     // Listeners for user input
     start_button.addEventListener("pointerup", trigger_start); // Button click
