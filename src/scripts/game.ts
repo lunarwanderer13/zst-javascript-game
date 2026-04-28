@@ -23,6 +23,7 @@ function main(): void {
     const player: Player = new Player(game_container)
 
     // Pause game on load, giving the player time to read the rules and lock in
+    let game_started: boolean = false
     let game_running: boolean = false
 
     // The starting modal window
@@ -36,6 +37,7 @@ function main(): void {
     // Hides the starting window
     function trigger_start(): void {
         if (start_modal) start_modal.style.display = "none"
+        setTimeout(() => { game_started = true }, 50)
     }
 
     // Listeners for user input
@@ -53,7 +55,7 @@ function main(): void {
 
     // Jump handler
     function trigger_jump(): void {
-        if (!game_running) {
+        if (game_started && !game_running) {
             game_running = true
             if (jump_button) jump_button.textContent = "JUMP"
             if (score_header) score_header.style.visibility = "visible"

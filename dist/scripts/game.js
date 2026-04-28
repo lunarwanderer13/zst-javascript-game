@@ -20,6 +20,7 @@ function main() {
     // Initialize a player
     const player = new Player(game_container);
     // Pause game on load, giving the player time to read the rules and lock in
+    let game_started = false;
     let game_running = false;
     // The starting modal window
     const start_modal = document.querySelector("div.start-modal");
@@ -33,6 +34,7 @@ function main() {
     function trigger_start() {
         if (start_modal)
             start_modal.style.display = "none";
+        setTimeout(() => { game_started = true; }, 50);
     }
     // Listeners for user input
     start_button.addEventListener("pointerup", trigger_start); // Button click
@@ -48,7 +50,7 @@ function main() {
         return;
     // Jump handler
     function trigger_jump() {
-        if (!game_running) {
+        if (game_started && !game_running) {
             game_running = true;
             if (jump_button)
                 jump_button.textContent = "JUMP";
