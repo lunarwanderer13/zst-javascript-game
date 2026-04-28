@@ -82,7 +82,7 @@ function main() {
             player.move();
             obstacles.forEach((obstacle) => { obstacle.move(); });
             // Move the background
-            background_pos++;
+            background_pos--;
             player.container.style.backgroundPositionX = `${background_pos}px`;
             if (player.y < 0 || player.y > 100) {
                 player.die();
