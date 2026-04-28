@@ -39,7 +39,7 @@ function main() {
     // Listeners for user input
     start_button.addEventListener("pointerup", trigger_start); // Button click
     document.addEventListener("keydown", (event) => {
-        if (event.code === "Space" || event.code === "Enter") {
+        if (event.code === "Space" || event.code === "Enter" && !event.repeat) {
             event.preventDefault();
             trigger_start();
         }
@@ -62,7 +62,7 @@ function main() {
     // Listeners for user input
     jump_button.addEventListener("pointerdown", trigger_jump); // Button click
     document.addEventListener("keydown", (event) => {
-        if (event.code === "Space") {
+        if (event.code === "Space" && !event.repeat) {
             event.preventDefault();
             trigger_jump();
         }
