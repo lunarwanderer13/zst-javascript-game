@@ -9,6 +9,11 @@ export default class Player {
     private jump_force: number // The force of player's jump
     private sprite: string     // Player's sprite
 
+    public jump_sfx: HTMLAudioElement
+    public score_sfx: HTMLAudioElement
+    public death_sfx: HTMLAudioElement
+    public gameover_sfx: HTMLAudioElement
+
     public constructor(container: HTMLDivElement) {
         this.container = container
 
@@ -18,6 +23,11 @@ export default class Player {
 
         this.jump_force = 1.25
         this.sprite = "./src/images/cat.png"
+
+        this.jump_sfx = new Audio("./src/sounds/jump.wav")
+        this.score_sfx = new Audio("./src/sounds/score.wav")
+        this.death_sfx = new Audio("./src/sounds/death.wav")
+        this.gameover_sfx = new Audio("./src/sounds/gameover.wav")
 
         // Create the player <img> element
         // and append it to the game container <div> element

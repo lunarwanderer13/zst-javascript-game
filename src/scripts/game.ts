@@ -62,7 +62,10 @@ function main(): void {
             if (score_header) score_header.style.visibility = "visible"
         }
 
-        player.jump()
+        if (game_running) {
+            player.jump()
+            //player.jump_sfx.play()
+        }
     }
 
     // Listeners for user input
@@ -111,6 +114,7 @@ function main(): void {
             obstacle.passed = true
 
             score++
+            player.score_sfx.play()
             if (score_header) score_header.innerText = `Score: ${score}`
         }
 
@@ -132,7 +136,13 @@ function main(): void {
 
             if ((player.y < 0 || player.y > 100) || (closest && is_colliding(player, closest))) {
                 player.die()
-                console.log("game over")
+                player.death_sfx.play()
+
+                setTimeout(() => {
+                    player.gameover_sfx.play()
+                }, 3000)
+
+                game_running = false
                 clearInterval(obstacle_spawner_loop) // Stop the spawning loop
                 clearInterval(game_loop)             // Stop the game loop
             }

@@ -58,7 +58,10 @@ function main() {
             if (score_header)
                 score_header.style.visibility = "visible";
         }
-        player.jump();
+        if (game_running) {
+            player.jump();
+            //player.jump_sfx.play()
+        }
     }
     // Listeners for user input
     jump_button.addEventListener("pointerdown", trigger_jump); // Button click
@@ -98,6 +101,7 @@ function main() {
         if (!collide && !obstacle.passed && player_hitbox.left > obstacle_hitbox.right) {
             obstacle.passed = true;
             score++;
+            player.score_sfx.play();
             if (score_header)
                 score_header.innerText = `Score: ${score}`;
         }
@@ -115,7 +119,11 @@ function main() {
             player.container.style.backgroundPositionX = `${background_pos}px`;
             if ((player.y < 0 || player.y > 100) || (closest && is_colliding(player, closest))) {
                 player.die();
-                console.log("game over");
+                player.death_sfx.play();
+                setTimeout(() => {
+                    player.gameover_sfx.play();
+                }, 3000);
+                game_running = false;
                 clearInterval(obstacle_spawner_loop); // Stop the spawning loop
                 clearInterval(game_loop); // Stop the game loop
             }
