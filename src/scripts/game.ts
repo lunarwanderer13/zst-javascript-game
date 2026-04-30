@@ -13,6 +13,7 @@ function main(): void {
     // Score display
     const score_header: HTMLDivElement | null = document.querySelector<HTMLHeadingElement>("h3")
     if (!score_header) return
+    let score: number = 0
 
     // Obstacle to be cloned
     const original_obstacle: HTMLDivElement | null = document.querySelector<HTMLDivElement>("div.obstacle")
@@ -84,6 +85,38 @@ function main(): void {
         obstacles.push(obstacle)
     }, 2000)
 
+    function get_closest_obstacle(): Obstacle | null {
+        return obstacles.filter((obstacle: Obstacle) => !obstacle.passed)[0]
+    }
+
+    function is_colliding(player: Player, obstacle: Obstacle): boolean {
+        let player_hitbox: DOMRect = player.element.getBoundingClientRect()
+        let obstacle_hitbox: DOMRect = obstacle.element.getBoundingClientRect()
+        let obstacle_poles: NodeListOf<HTMLImageElement> = obstacle.element.querySelectorAll("img")
+        let upper_pole_hitbox: DOMRect = obstacle_poles[0].getBoundingClientRect()
+        let bottom_pole_hitbox: DOMRect = obstacle_poles[1].getBoundingClientRect()
+        let collide: boolean = false
+        let padding: number = 0.05
+
+        if (
+            (player_hitbox.top + (player_hitbox.top * padding) < upper_pole_hitbox.bottom || player_hitbox.bottom - (player_hitbox.bottom * padding) > bottom_pole_hitbox.top)
+            &&
+            (player_hitbox.left + (player_hitbox.left * padding) < obstacle_hitbox.right && player_hitbox.right - (player_hitbox.right * padding) > obstacle_hitbox.left)
+        ) {
+            obstacle.passed = true
+            collide = true
+        }
+
+        if (!collide && !obstacle.passed && player_hitbox.left > obstacle_hitbox.right) {
+            obstacle.passed = true
+
+            score++
+            if (score_header) score_header.innerText = `Score: ${score}`
+        }
+
+        return collide
+    }
+
     let background_pos = 0
 
     // Main game loop
@@ -91,12 +124,13 @@ function main(): void {
         if (game_running) {
             player.move()
             obstacles.forEach((obstacle: Obstacle) => { obstacle.move() })
+            let closest: Obstacle | null = get_closest_obstacle()
 
             // Move the background
             background_pos--
             player.container.style.backgroundPositionX = `${background_pos}px`
 
-            if (player.y < 0 || player.y > 100) {
+            if ((player.y < 0 || player.y > 100) || (closest && is_colliding(player, closest))) {
                 player.die()
                 console.log("game over")
                 clearInterval(obstacle_spawner_loop) // Stop the spawning loop
