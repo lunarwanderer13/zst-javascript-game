@@ -48,13 +48,10 @@ div.score-container {
 }
 
 div.score-container h3 {
-    
+    width: fit-content;
     padding: 1vh;
     border-bottom: 1px solid #000000;
-    
 }
-
-
 
 div.modal-body p {
     width: 200px;

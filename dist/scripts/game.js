@@ -9,10 +9,17 @@ function main() {
     if (!game_container)
         return;
     // Score display
-    const score_header = document.querySelector("h3");
+    const score_header = document.querySelector("h3#current-score");
     if (!score_header)
         return;
+    const end_score_header = document.querySelector("h3#end-score");
+    if (!end_score_header)
+        return;
+    const end_highscore_header = document.querySelector("h3#end-highscore");
+    if (!end_highscore_header)
+        return;
     let score = 0;
+    let highscore = 0;
     // Obstacle to be cloned
     const original_obstacle = document.querySelector("div.obstacle");
     if (!original_obstacle)
@@ -23,6 +30,7 @@ function main() {
     // Pause game on load, giving the player time to read the rules and lock in
     let game_started = false;
     let game_running = false;
+    let game_ended = false;
     // The starting modal window
     const start_modal = document.querySelector("div.start-modal");
     if (!start_modal)
@@ -40,7 +48,7 @@ function main() {
     // Listeners for user input
     start_button.addEventListener("pointerup", trigger_start); // Button click
     document.addEventListener("keydown", (event) => {
-        if (event.code === "Space" || event.code === "Enter" && !event.repeat) {
+        if ((event.code === "Space" || event.code === "Enter") && !event.repeat) {
             event.preventDefault();
             trigger_start();
         }
@@ -53,16 +61,39 @@ function main() {
     const end_button = document.querySelector("button#end-button");
     if (!end_button)
         return;
-    // Resets game
+    // Opens ending window
     function trigger_end() {
-        location.reload();
+        if (!end_modal)
+            return;
+        end_modal.style.opacity = "0.0";
+        end_modal.style.display = "flex";
+        highscore = Number(localStorage.getItem("highscore"));
+        if (score > highscore)
+            localStorage.setItem("highscore", String(score));
+        if (end_score_header)
+            end_score_header.innerText = `Score: ${score}`;
+        if (end_highscore_header)
+            end_highscore_header.innerText = `Highscore: ${localStorage.getItem("highscore")}`;
+        end_modal.animate([
+            { offset: 0.0, opacity: "0.0" },
+            { offset: 1.0, opacity: "1.0" }
+        ], {
+            duration: 1000,
+            easing: "linear",
+            fill: "forwards"
+        });
+    }
+    // Resets game
+    function reset_game() {
+        if (game_ended)
+            location.reload();
     }
     // Listeners for user input
-    end_button.addEventListener("pointerup", trigger_end); // Button click
+    end_button.addEventListener("pointerup", reset_game); // Button click
     document.addEventListener("keydown", (event) => {
         if ((event.code === "Space" || event.code === "Enter") && !event.repeat) {
             event.preventDefault();
-            trigger_end();
+            reset_game();
         }
     });
     // Button used for jumping, and if the game is paused, starting the game
@@ -142,8 +173,10 @@ function main() {
                 player.death_sfx.play();
                 setTimeout(() => {
                     player.gameover_sfx.play();
+                    trigger_end();
                 }, 3000);
                 game_running = false;
+                game_ended = true;
                 clearInterval(obstacle_spawner_loop); // Stop the spawning loop
                 clearInterval(game_loop); // Stop the game loop
             }
