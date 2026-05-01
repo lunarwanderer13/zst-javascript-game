@@ -49,6 +49,28 @@ function main(): void {
         }
     })
 
+    // The ending modal window
+    const end_modal: HTMLDivElement | null = document.querySelector<HTMLDivElement>("div.end-modal")
+    if(!end_modal) return
+    
+    // The ending button
+    const end_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#end-button")
+    if (!end_button) return
+
+    // Resets game
+    function trigger_end(): void {
+        location.reload();
+    }
+
+    // Listeners for user input
+    end_button.addEventListener("pointerup", trigger_end)        // Button click
+    document.addEventListener("keydown", (event: KeyboardEvent) => { // Space or enter press
+        if((event.code === "Space" || event.code === "Enter") && !event.repeat) {
+            event.preventDefault()
+            trigger_end()
+        }
+    })
+    
     // Button used for jumping, and if the game is paused, starting the game
     const jump_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#jump-button")
     if (!jump_button) return

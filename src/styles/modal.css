@@ -8,11 +8,11 @@ div.modal {
 }
 
 div.start-modal {
-    display: flex;
+    display: none;
 }
 
 div.end-modal {
-    display: none;
+    display: flex;
 }
 
 div.modal-body {
@@ -38,6 +38,23 @@ div.rules-container {
     align-items: center;
     margin: 0 auto;
 }
+
+div.score-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+div.score-container h3 {
+    
+    padding: 1vh;
+    border-bottom: 1px solid #000000;
+    
+}
+
+
 
 div.modal-body p {
     width: 200px;

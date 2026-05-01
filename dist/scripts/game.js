@@ -44,6 +44,26 @@ function main() {
             trigger_start();
         }
     });
+    // The ending modal window
+    const end_modal = document.querySelector("div.end-modal");
+    if (!end_modal)
+        return;
+    // The ending button
+    const end_button = document.querySelector("button#end-button");
+    if (!end_button)
+        return;
+    // Resets game
+    function trigger_end() {
+        location.reload();
+    }
+    // Listeners for user input
+    end_button.addEventListener("pointerup", trigger_end); // Button click
+    document.addEventListener("keydown", (event) => {
+        if ((event.code === "Space" || event.code === "Enter") && !event.repeat) {
+            event.preventDefault();
+            trigger_end();
+        }
+    });
     // Button used for jumping, and if the game is paused, starting the game
     const jump_button = document.querySelector("button#jump-button");
     if (!jump_button)
