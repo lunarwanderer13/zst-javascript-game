@@ -12,6 +12,7 @@ function main() {
     const score_header = document.querySelector("h3");
     if (!score_header)
         return;
+    let score = 0;
     // Obstacle to be cloned
     const original_obstacle = document.querySelector("div.obstacle");
     if (!original_obstacle)
@@ -77,7 +78,10 @@ function main() {
             if (score_header)
                 score_header.style.visibility = "visible";
         }
-        player.jump();
+        if (game_running) {
+            player.jump();
+            //player.jump_sfx.play()
+        }
     }
     // Listeners for user input
     jump_button.addEventListener("pointerdown", trigger_jump); // Button click
@@ -97,18 +101,49 @@ function main() {
         let obstacle = new Obstacle(game_container, original_obstacle);
         obstacles.push(obstacle);
     }, 2000);
+    function get_closest_obstacle() {
+        return obstacles.filter((obstacle) => !obstacle.passed)[0];
+    }
+    function is_colliding(player, obstacle) {
+        let player_hitbox = player.element.getBoundingClientRect();
+        let obstacle_hitbox = obstacle.element.getBoundingClientRect();
+        let obstacle_poles = obstacle.element.querySelectorAll("img");
+        let upper_pole_hitbox = obstacle_poles[0].getBoundingClientRect();
+        let bottom_pole_hitbox = obstacle_poles[1].getBoundingClientRect();
+        let collide = false;
+        let padding = 0.05;
+        if ((player_hitbox.top + (player_hitbox.top * padding) < upper_pole_hitbox.bottom || player_hitbox.bottom - (player_hitbox.bottom * padding) > bottom_pole_hitbox.top)
+            &&
+                (player_hitbox.left + (player_hitbox.left * padding) < obstacle_hitbox.right && player_hitbox.right - (player_hitbox.right * padding) > obstacle_hitbox.left)) {
+            obstacle.passed = true;
+            collide = true;
+        }
+        if (!collide && !obstacle.passed && player_hitbox.left > obstacle_hitbox.right) {
+            obstacle.passed = true;
+            score++;
+            player.score_sfx.play();
+            if (score_header)
+                score_header.innerText = `Score: ${score}`;
+        }
+        return collide;
+    }
     let background_pos = 0;
     // Main game loop
     const game_loop = setInterval(() => {
         if (game_running) {
             player.move();
             obstacles.forEach((obstacle) => { obstacle.move(); });
+            let closest = get_closest_obstacle();
             // Move the background
             background_pos--;
             player.container.style.backgroundPositionX = `${background_pos}px`;
-            if (player.y < 0 || player.y > 100) {
+            if ((player.y < 0 || player.y > 100) || (closest && is_colliding(player, closest))) {
                 player.die();
-                console.log("game over");
+                player.death_sfx.play();
+                setTimeout(() => {
+                    player.gameover_sfx.play();
+                }, 3000);
+                game_running = false;
                 clearInterval(obstacle_spawner_loop); // Stop the spawning loop
                 clearInterval(game_loop); // Stop the game loop
             }

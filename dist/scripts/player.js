@@ -7,6 +7,10 @@ export default class Player {
         this.velocity = 0.0; // Start with no velocity
         this.jump_force = 1.25;
         this.sprite = "./src/images/cat.png";
+        this.jump_sfx = new Audio("./src/sounds/jump.wav");
+        this.score_sfx = new Audio("./src/sounds/score.wav");
+        this.death_sfx = new Audio("./src/sounds/death.wav");
+        this.gameover_sfx = new Audio("./src/sounds/gameover.wav");
         // Create the player <img> element
         // and append it to the game container <div> element
         this.element = new Image();
