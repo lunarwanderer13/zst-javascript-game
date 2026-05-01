@@ -39,6 +39,20 @@ div.rules-container {
     margin: 0 auto;
 }
 
+div.score-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+div.score-container h3 {
+    width: fit-content;
+    padding: 1vh;
+    border-bottom: 1px solid #000000;
+}
+
 div.modal-body p {
     width: 200px;
     height: 100px;

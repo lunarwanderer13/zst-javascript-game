@@ -11,9 +11,17 @@ function main(): void {
     if (!game_container) return
 
     // Score display
-    const score_header: HTMLDivElement | null = document.querySelector<HTMLHeadingElement>("h3")
+    const score_header: HTMLHeadingElement | null = document.querySelector<HTMLHeadingElement>("h3#current-score")
     if (!score_header) return
+
+    const end_score_header: HTMLHeadingElement | null = document.querySelector<HTMLHeadingElement>("h3#end-score")
+    if (!end_score_header) return
+
+    const end_highscore_header: HTMLHeadingElement | null = document.querySelector<HTMLHeadingElement>("h3#end-highscore")
+    if (!end_highscore_header) return
+
     let score: number = 0
+    let highscore: number = 0
 
     // Obstacle to be cloned
     const original_obstacle: HTMLDivElement | null = document.querySelector<HTMLDivElement>("div.obstacle")
@@ -26,6 +34,7 @@ function main(): void {
     // Pause game on load, giving the player time to read the rules and lock in
     let game_started: boolean = false
     let game_running: boolean = false
+    let game_ended: boolean = false
 
     // The starting modal window
     const start_modal: HTMLDivElement | null = document.querySelector<HTMLDivElement>("div.start-modal")
@@ -44,9 +53,56 @@ function main(): void {
     // Listeners for user input
     start_button.addEventListener("pointerup", trigger_start)        // Button click
     document.addEventListener("keydown", (event: KeyboardEvent) => { // Space or enter press
-        if(event.code === "Space" || event.code === "Enter" && !event.repeat) {
+        if((event.code === "Space" || event.code === "Enter") && !event.repeat) {
             event.preventDefault()
             trigger_start()
+        }
+    })
+
+    // The ending modal window
+    const end_modal: HTMLDivElement | null = document.querySelector<HTMLDivElement>("div.end-modal")
+    if(!end_modal) return
+    
+    // The ending button
+    const end_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#end-button")
+    if (!end_button) return
+
+    // Opens ending window
+    function trigger_end(): void {
+        if(!end_modal) return
+        end_modal.style.opacity = "0.0"
+        end_modal.style.display = "flex"
+
+        highscore = Number(localStorage.getItem("highscore"))
+        if (score > highscore) localStorage.setItem("highscore", String(score))
+
+        if (end_score_header) end_score_header.innerText = `Score: ${score}`
+        if (end_highscore_header) end_highscore_header.innerText = `Highscore: ${localStorage.getItem("highscore")}`
+
+        end_modal.animate(
+            [
+                { offset: 0.0, opacity: "0.0" },
+                { offset: 1.0, opacity: "1.0" }
+            ],
+            {
+                duration: 1000,
+                easing: "linear",
+                fill: "forwards"
+            }
+        )
+    }
+
+    // Resets game
+    function reset_game(): void {
+        if (game_ended) location.reload()
+    }
+
+    // Listeners for user input
+    end_button.addEventListener("pointerup", reset_game)             // Button click
+    document.addEventListener("keydown", (event: KeyboardEvent) => { // Space or enter press
+        if((event.code === "Space" || event.code === "Enter") && !event.repeat) {
+            event.preventDefault()
+            reset_game()
         }
     })
 
@@ -140,9 +196,11 @@ function main(): void {
 
                 setTimeout(() => {
                     player.gameover_sfx.play()
+                    trigger_end()
                 }, 3000)
 
                 game_running = false
+                game_ended = true
                 clearInterval(obstacle_spawner_loop) // Stop the spawning loop
                 clearInterval(game_loop)             // Stop the game loop
             }
