@@ -8,11 +8,11 @@ div.modal {
 }
 
 div.start-modal {
-    display: none;
+    display: flex;
 }
 
 div.end-modal {
-    display: flex;
+    display: none;
 }
 
 div.modal-body {
