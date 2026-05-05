@@ -47,9 +47,30 @@ function main(): void {
 
     // The settings panel's animation keyframes
     const panel_keyframes: Keyframe[] = [
-        { offset: 0.0, left: "-90vw" },
+        { offset: 0.0, left: "-100vw" },
         { offset: 1.0, left: "0vw" }
     ]
+
+    // Changes background
+    function change_background_sprite(active: HTMLImageElement): void {
+        for (let sprite of background_sprites) {
+            sprite.id === active.id ? sprite.className = "active-bg" : sprite.className = ""
+            if (sprite.id === active.id) {
+                sprite.className = "active-bg"
+                if (game_container) game_container.style.backgroundImage = `url(${sprite.src})`
+            } else {
+                sprite.className = ""
+            }
+        }
+    }
+
+    // Background sprites
+    const background_sprites: NodeListOf<HTMLImageElement> = document.querySelectorAll<HTMLImageElement>("div.background-selector img")
+    for (let sprite of background_sprites) {
+        sprite.addEventListener("pointerup", () => {
+            change_background_sprite(sprite)
+        })
+    }
 
     // Highscore reset button
     const highscore_reset_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#reset-highscore-button")

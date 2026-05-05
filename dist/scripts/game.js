@@ -42,9 +42,30 @@ function main() {
         return;
     // The settings panel's animation keyframes
     const panel_keyframes = [
-        { offset: 0.0, left: "-90vw" },
+        { offset: 0.0, left: "-100vw" },
         { offset: 1.0, left: "0vw" }
     ];
+    // Changes background
+    function change_background_sprite(active) {
+        for (let sprite of background_sprites) {
+            sprite.id === active.id ? sprite.className = "active-bg" : sprite.className = "";
+            if (sprite.id === active.id) {
+                sprite.className = "active-bg";
+                if (game_container)
+                    game_container.style.backgroundImage = `url(${sprite.src})`;
+            }
+            else {
+                sprite.className = "";
+            }
+        }
+    }
+    // Background sprites
+    const background_sprites = document.querySelectorAll("div.background-selector img");
+    for (let sprite of background_sprites) {
+        sprite.addEventListener("pointerup", () => {
+            change_background_sprite(sprite);
+        });
+    }
     // Highscore reset button
     const highscore_reset_button = document.querySelector("button#reset-highscore-button");
     if (!highscore_reset_button)
