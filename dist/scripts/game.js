@@ -241,7 +241,7 @@ function main() {
             obstacle.passed = true;
             collide = true;
         }
-        if (!collide && !obstacle.passed && player_hitbox.left > obstacle_hitbox.right) {
+        if (!collide && !obstacle.passed && player_hitbox.left + (player_hitbox.left * 0.1) > obstacle_hitbox.right) {
             obstacle.passed = true;
             score++;
             player.score_sfx.play();
