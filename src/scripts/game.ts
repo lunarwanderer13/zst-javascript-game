@@ -36,9 +36,96 @@ function main(): void {
     let game_running: boolean = false
     let game_ended: boolean = false
 
+    // The settings panel
+    const settings_panel: HTMLDivElement | null = document.querySelector<HTMLDivElement>("aside.settings-panel")
+    if (!settings_panel) return
+    let panel_up: boolean = false
+
+    // The settings panel button
+    const settings_panel_button: HTMLImageElement | null = document.querySelector<HTMLImageElement>("img#settings-button")
+    if (!settings_panel_button) return
+
+    // The settings panel's animation keyframes
+    const panel_keyframes: Keyframe[] = [
+        { offset: 0.0, left: "-100vw" },
+        { offset: 1.0, left: "0vw" }
+    ]
+
+    // Changes background
+    function change_background_sprite(active: HTMLImageElement): void {
+        for (let sprite of background_sprites) {
+            if (sprite.id === active.id) {
+                sprite.className = "active-bg"
+                localStorage.setItem("bg_sprite", sprite.id)
+                if (game_container) game_container.style.backgroundImage = `url(${active.src})`
+            } else {
+                sprite.className = ""
+            }
+        }
+    }
+
+    // Background sprites
+    const background_sprites: NodeListOf<HTMLImageElement> = document.querySelectorAll<HTMLImageElement>("div.background-selector img")
+    for (let sprite of background_sprites) {
+        if (sprite.id === (localStorage.getItem("bg_sprite") ?? "blue")) change_background_sprite(sprite)
+        sprite.addEventListener("pointerup", () => {
+            change_background_sprite(sprite)
+        })
+    }
+
+    // Highscore reset button
+    const highscore_reset_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#reset-highscore-button")
+    if (!highscore_reset_button) return
+
+    // Highscore display
+    const highscore_display: HTMLSpanElement | null = document.querySelector<HTMLSpanElement>("span#highscore-display")
+    if (!highscore_display) return
+    highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`
+
+    // Toggles the settings panel
+    function trigger_settings(): void {
+        if (!settings_panel) return
+        if (game_started) return
+
+        panel_up = !panel_up
+        if (panel_up) {
+            settings_panel.animate(panel_keyframes, {
+                duration: 1000,
+                direction: "normal",
+                easing: "ease-out",
+                fill: "forwards"
+            })
+        } else {
+            settings_panel.animate(panel_keyframes, {
+                duration: 1000,
+                direction: "reverse",
+                easing: "ease-out",
+                fill: "forwards"
+            })
+        }
+    }
+
+    // Listeners for user input
+    settings_panel_button.addEventListener("pointerup", trigger_settings)
+    document.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (event.code === "Escape" && !event.repeat) {
+            event.preventDefault()
+            trigger_settings()
+        }
+    })
+
+    // Resets highscore
+    function reset_highscore(): void {
+        localStorage.setItem("highscore", "0")
+        if (highscore_display) highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`
+    }
+
+    // Listeners for user input
+    highscore_reset_button.addEventListener("pointerup", reset_highscore)
+
     // The starting modal window
     const start_modal: HTMLDivElement | null = document.querySelector<HTMLDivElement>("div.start-modal")
-    if(!start_modal) return
+    if (!start_modal) return
     
     // The starting button
     const start_button: HTMLButtonElement | null = document.querySelector<HTMLButtonElement>("button#start-button")
@@ -46,14 +133,17 @@ function main(): void {
 
     // Hides the starting window
     function trigger_start(): void {
+        if (panel_up) return
         if (start_modal) start_modal.style.display = "none"
+        if (settings_panel) settings_panel.style.display = "none"
+        if (settings_panel_button) settings_panel_button.style.display = "none"
         setTimeout(() => { game_started = true }, 50)
     }
 
     // Listeners for user input
     start_button.addEventListener("pointerup", trigger_start)        // Button click
     document.addEventListener("keydown", (event: KeyboardEvent) => { // Space or enter press
-        if((event.code === "Space" || event.code === "Enter") && !event.repeat) {
+        if ((event.code === "Space" || event.code === "Enter") && !event.repeat) {
             event.preventDefault()
             trigger_start()
         }
@@ -112,7 +202,7 @@ function main(): void {
 
     // Jump handler
     function trigger_jump(): void {
-        if (game_started && !game_running) {
+        if (game_started && !game_running && !panel_up) {
             game_running = true
             if (jump_button) jump_button.textContent = "JUMP"
             if (score_header) score_header.style.visibility = "visible"

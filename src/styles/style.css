@@ -2,6 +2,7 @@
     --primary-bg-color: #fcfcfc;
     --accent-bg-color: #ececec;
     --modal-bg-color: #00000033;
+    --selected-bg-color: #dcdcdc;
     --text-color: #000000;
     --border: 1px solid #000000;
     --border-radius: 5vh;
@@ -88,6 +89,132 @@ div.button-container button {
     border: var(--border);
     border-radius: var(--border-radius);
     cursor: pointer;
+}
+
+img#settings-button {
+    position: fixed;
+    left: 1vw;
+    top: 1vw;
+    width: max(2vw, 2vh);
+    aspect-ratio: 1 / 1;
+    background-color: var(--accent-bg-color);
+    margin: 0;
+    padding: 0.25vw;
+    border-radius: 100%;
+    z-index: 666;
+    transition: 0.25s;
+}
+
+img#settings-button:hover {
+    left: 0.5vw;
+    top: 0.5vw;
+    width: max(3vw, 3vh);
+    aspect-ratio: 1 / 1;
+    transition: 0.25s;
+}
+
+aside.settings-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+    position: fixed;
+    top: 5vh;
+    left: -100vw;
+    width: min(90vw, 90vh);
+    height: 90vh;
+    background-color: var(--primary-bg-color);
+    border: var(--border);
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    padding: 0 min(1vw, 1vh);
+    z-index: 500;
+}
+
+aside.settings-panel header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: fit-content;
+    height: 5vh;
+}
+
+aside.settings-panel header h1 {
+    width: fit-content;
+    font-size: 4vh;
+    padding: 5vh 0;
+}
+
+aside.settings-panel section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    height: fit-content;
+    overflow-x: visible;
+}
+
+aside.settings-panel section h3 {
+    width: fit-content;
+    font-size: 2vh;
+    padding: 2.5vh 0;
+}
+
+aside.settings-panel section div {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: fit-content;
+    overflow-x: auto;
+}
+
+aside.settings-panel section div img {
+    height: 10vh;
+    margin: 1vh;
+    padding: 1vh;
+    background-color: var(--primary-bg-color);
+    border: var(--border);
+    border-radius: 1vh;
+    transition: 0.5s;
+}
+
+aside.settings-panel section div img:hover {
+    background-color: var(--selected-bg-color);
+    transition: 0.5s;
+}
+
+aside.settings-panel section div img.active-bg {
+    background-color: var(--selected-bg-color);
+    transition: 0.5s;
+}
+
+aside.settings-panel footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: 10vh;
+}
+
+aside.settings-panel footer button {
+    all: unset;
+    width: 25vh;
+    height: 4vh;
+    margin: 0 1vh;
+    font-size: 2vh;
+    background-color: var(--accent-bg-color);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+aside.settings-panel footer span {
+    width: 25vh;
+    font-size: 2vh;
 }
 
 a.gh-badge {
