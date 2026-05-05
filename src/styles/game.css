@@ -3,7 +3,6 @@
     width: min(90vw, 100vh) !important;
     aspect-ratio: 2 / 1;
     max-height: 50vh;
-    background-image: url(./../images/blue.png);
     background-size: min(10vw, 10vh);
     background-repeat: repeat;
     background-position-x: 0px;

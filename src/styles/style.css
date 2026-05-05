@@ -2,6 +2,7 @@
     --primary-bg-color: #fcfcfc;
     --accent-bg-color: #ececec;
     --modal-bg-color: #00000033;
+    --selected-bg-color: #dcdcdc;
     --text-color: #000000;
     --border: 1px solid #000000;
     --border-radius: 5vh;
@@ -181,12 +182,13 @@ aside.settings-panel section div img {
 }
 
 aside.settings-panel section div img:hover {
-    background-color: var(--accent-bg-color);
+    background-color: var(--selected-bg-color);
     transition: 0.5s;
 }
 
 aside.settings-panel section div img.active-bg {
-    background-color: var(--accent-bg-color);
+    background-color: var(--selected-bg-color);
+    transition: 0.5s;
 }
 
 aside.settings-panel footer {

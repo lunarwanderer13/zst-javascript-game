@@ -54,10 +54,10 @@ function main(): void {
     // Changes background
     function change_background_sprite(active: HTMLImageElement): void {
         for (let sprite of background_sprites) {
-            sprite.id === active.id ? sprite.className = "active-bg" : sprite.className = ""
             if (sprite.id === active.id) {
                 sprite.className = "active-bg"
-                if (game_container) game_container.style.backgroundImage = `url(${sprite.src})`
+                localStorage.setItem("bg_sprite", sprite.id)
+                if (game_container) game_container.style.backgroundImage = `url(${active.src})`
             } else {
                 sprite.className = ""
             }
@@ -67,6 +67,7 @@ function main(): void {
     // Background sprites
     const background_sprites: NodeListOf<HTMLImageElement> = document.querySelectorAll<HTMLImageElement>("div.background-selector img")
     for (let sprite of background_sprites) {
+        if (sprite.id === (localStorage.getItem("bg_sprite") ?? "blue")) change_background_sprite(sprite)
         sprite.addEventListener("pointerup", () => {
             change_background_sprite(sprite)
         })
