@@ -31,6 +31,69 @@ function main() {
     let game_started = false;
     let game_running = false;
     let game_ended = false;
+    // The settings panel
+    const settings_panel = document.querySelector("aside.settings-panel");
+    if (!settings_panel)
+        return;
+    let panel_up = false;
+    // The settings panel button
+    const settings_panel_button = document.querySelector("img#settings-button");
+    if (!settings_panel_button)
+        return;
+    // The settings panel's animation keyframes
+    const panel_keyframes = [
+        { offset: 0.0, left: "-90vw" },
+        { offset: 1.0, left: "0vw" }
+    ];
+    // Highscore reset button
+    const highscore_reset_button = document.querySelector("button#reset-highscore-button");
+    if (!highscore_reset_button)
+        return;
+    // Highscore display
+    const highscore_display = document.querySelector("span#highscore-display");
+    if (!highscore_display)
+        return;
+    highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`;
+    // Toggles the settings panel
+    function trigger_settings() {
+        if (!settings_panel)
+            return;
+        if (game_started)
+            return;
+        panel_up = !panel_up;
+        if (panel_up) {
+            settings_panel.animate(panel_keyframes, {
+                duration: 1000,
+                direction: "normal",
+                easing: "ease-out",
+                fill: "forwards"
+            });
+        }
+        else {
+            settings_panel.animate(panel_keyframes, {
+                duration: 1000,
+                direction: "reverse",
+                easing: "ease-out",
+                fill: "forwards"
+            });
+        }
+    }
+    // Listeners for user input
+    settings_panel_button.addEventListener("pointerup", trigger_settings);
+    document.addEventListener("keydown", (event) => {
+        if (event.code === "Escape" && !event.repeat) {
+            event.preventDefault();
+            trigger_settings();
+        }
+    });
+    // Resets highscore
+    function reset_highscore() {
+        localStorage.setItem("highscore", "0");
+        if (highscore_display)
+            highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`;
+    }
+    // Listeners for user input
+    highscore_reset_button.addEventListener("pointerup", reset_highscore);
     // The starting modal window
     const start_modal = document.querySelector("div.start-modal");
     if (!start_modal)
@@ -41,8 +104,14 @@ function main() {
         return;
     // Hides the starting window
     function trigger_start() {
+        if (panel_up)
+            return;
         if (start_modal)
             start_modal.style.display = "none";
+        if (settings_panel)
+            settings_panel.style.display = "none";
+        if (settings_panel_button)
+            settings_panel_button.style.display = "none";
         setTimeout(() => { game_started = true; }, 50);
     }
     // Listeners for user input
@@ -102,7 +171,7 @@ function main() {
         return;
     // Jump handler
     function trigger_jump() {
-        if (game_started && !game_running) {
+        if (game_started && !game_running && !panel_up) {
             game_running = true;
             if (jump_button)
                 jump_button.textContent = "JUMP";

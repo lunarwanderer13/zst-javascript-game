@@ -56,11 +56,37 @@
             <button id="jump-button">START</button>
         </div>
 
+        <img id="settings-button" src="./src/images/settings.png" alt="Settings">
+        <aside class="settings-panel">
+            <header><h1>Settings</h1></header>
+            <section>
+                <h3>Cat sprites</h3>
+                <div class="player-selector">
+                    <img src="./src/images/cat.png">
+                </div>
+            </section>
+            <section>
+                <h3>Background sprites</h3>
+                <div class="background-selector">
+                    <img id="active-bg" src="./src/images/blue.png">
+                    <img src="./src/images/purple.png">
+                    <img src="./src/images/red.png">
+                    <img src="./src/images/orange.png">
+                    <img src="./src/images/brown.png">
+                    <img src="./src/images/green.png">
+                    <img src="./src/images/black.png">
+                </div>
+            </section>
+            <footer>
+                <button id="reset-highscore-button">Reset Highscore</button>
+                <span id="highscore-display"></span>
+            </footer>
+        </aside>
 
         <a class="gh-badge" href="https://github.com/lunarwanderer13/zst-javascript-game">
             <img src="./src/images/github_icon.webp" alt="GitHub">
         </a>
 
-        <script type="module" src="dist/scripts/game.js"></script>
+        <script type="module" src="./dist/scripts/game.js"></script>
     </body>
 </html>
