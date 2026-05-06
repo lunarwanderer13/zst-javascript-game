@@ -45,6 +45,28 @@ function main() {
         { offset: 0.0, left: "-100vw" },
         { offset: 1.0, left: "0vw" }
     ];
+    // Changes player sprite
+    function change_player_sprite(active) {
+        for (let sprite of player_sprites) {
+            if (sprite.id === active.id) {
+                sprite.className = "active-player";
+                localStorage.setItem("player_sprite", sprite.id);
+                player.element.src = sprite.src;
+            }
+            else {
+                sprite.className = "";
+            }
+        }
+    }
+    // Player sprites
+    const player_sprites = document.querySelectorAll("div.player-selector img");
+    for (let sprite of player_sprites) {
+        if (sprite.id === (localStorage.getItem("player_sprite") ?? "gray"))
+            change_player_sprite(sprite);
+        sprite.addEventListener("pointerup", () => {
+            change_player_sprite(sprite);
+        });
+    }
     // Changes background
     function change_background_sprite(active) {
         for (let sprite of background_sprites) {
@@ -52,7 +74,7 @@ function main() {
                 sprite.className = "active-bg";
                 localStorage.setItem("bg_sprite", sprite.id);
                 if (game_container)
-                    game_container.style.backgroundImage = `url(${active.src})`;
+                    game_container.style.backgroundImage = `url(${sprite.src})`;
             }
             else {
                 sprite.className = "";
@@ -76,7 +98,10 @@ function main() {
     const highscore_display = document.querySelector("span#highscore-display");
     if (!highscore_display)
         return;
-    highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`;
+    if (localStorage.getItem("highscore"))
+        highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`;
+    else
+        highscore_display.innerText = "Current highscore: 0";
     // Toggles the settings panel
     function trigger_settings() {
         if (!settings_panel)

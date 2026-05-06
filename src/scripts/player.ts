@@ -7,7 +7,7 @@ export default class Player {
     public y: number           // The player's current vertical position
     public velocity: number    // The player's current vertical velocity
     private jump_force: number // The force of player's jump
-    private sprite: string     // Player's sprite
+    private sprites: string[]  // Player's sprites
 
     public jump_sfx: HTMLAudioElement
     public score_sfx: HTMLAudioElement
@@ -22,7 +22,11 @@ export default class Player {
         this.velocity = 0.0 // Start with no velocity
 
         this.jump_force = 1.25
-        this.sprite = "./src/images/cat.png"
+        this.sprites = [
+            "./src/images/cat_gray.png",
+            "./src/images/cat_orange.png",
+            "./src/images/cat_black.png"
+        ]
 
         this.jump_sfx = new Audio("./src/sounds/jump.wav")
         this.score_sfx = new Audio("./src/sounds/score.wav")
@@ -32,7 +36,6 @@ export default class Player {
         // Create the player <img> element
         // and append it to the game container <div> element
         this.element = new Image()
-        this.element.src = this.sprite
         this.element.alt = "Cat"
         this.element.className = "player"
         this.container.appendChild(this.element)
