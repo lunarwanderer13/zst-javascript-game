@@ -6,7 +6,11 @@ export default class Player {
         this.y = 47.5; // Start falling from 50% height
         this.velocity = 0.0; // Start with no velocity
         this.jump_force = 1.25;
-        this.sprite = "./src/images/cat.png";
+        this.sprites = [
+            "./src/images/cat_gray.png",
+            "./src/images/cat_orange.png",
+            "./src/images/cat_black.png"
+        ];
         this.jump_sfx = new Audio("./src/sounds/jump.wav");
         this.score_sfx = new Audio("./src/sounds/score.wav");
         this.death_sfx = new Audio("./src/sounds/death.wav");
@@ -14,7 +18,6 @@ export default class Player {
         // Create the player <img> element
         // and append it to the game container <div> element
         this.element = new Image();
-        this.element.src = this.sprite;
         this.element.alt = "Cat";
         this.element.className = "player";
         this.container.appendChild(this.element);

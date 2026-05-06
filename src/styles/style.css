@@ -186,6 +186,7 @@ aside.settings-panel section div img:hover {
     transition: 0.5s;
 }
 
+aside.settings-panel section div img.active-player,
 aside.settings-panel section div img.active-bg {
     background-color: var(--selected-bg-color);
     transition: 0.5s;
