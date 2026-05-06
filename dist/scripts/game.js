@@ -256,6 +256,9 @@ function main() {
     function get_closest_obstacle() {
         return obstacles.filter((obstacle) => !obstacle.passed)[0];
     }
+    function get_furthest_obstacle() {
+        return obstacles.filter((obstacle) => obstacle.passed)[0];
+    }
     function is_colliding(player, obstacle) {
         let player_hitbox = player.element.getBoundingClientRect();
         let obstacle_hitbox = obstacle.element.getBoundingClientRect();
@@ -286,9 +289,14 @@ function main() {
             player.move();
             obstacles.forEach((obstacle) => { obstacle.move(); });
             let closest = get_closest_obstacle();
+            let furthest = get_furthest_obstacle();
+            if (furthest && furthest.x < -10.0) {
+                furthest.element.remove();
+                obstacles.shift();
+            }
             // Move the background
             background_pos--;
-            player.container.style.backgroundPositionX = `${background_pos}px`;
+            game_container.style.backgroundPositionX = `${background_pos}px`;
             if ((player.y < 0 || player.y > 100) || (closest && is_colliding(player, closest))) {
                 player.die();
                 player.death_sfx.play();

@@ -267,6 +267,10 @@ function main(): void {
         return obstacles.filter((obstacle: Obstacle) => !obstacle.passed)[0]
     }
 
+    function get_furthest_obstacle(): Obstacle | null {
+        return obstacles.filter((obstacle: Obstacle) => obstacle.passed)[0]
+    }
+
     function is_colliding(player: Player, obstacle: Obstacle): boolean {
         let player_hitbox: DOMRect = player.element.getBoundingClientRect()
         let obstacle_hitbox: DOMRect = obstacle.element.getBoundingClientRect()
@@ -304,10 +308,15 @@ function main(): void {
             player.move()
             obstacles.forEach((obstacle: Obstacle) => { obstacle.move() })
             let closest: Obstacle | null = get_closest_obstacle()
+            let furthest: Obstacle | null = get_furthest_obstacle()
+            if (furthest && furthest.x < -10.0) {
+                furthest.element.remove()
+                obstacles.shift()
+            }
 
             // Move the background
             background_pos--
-            player.container.style.backgroundPositionX = `${background_pos}px`
+            game_container.style.backgroundPositionX = `${background_pos}px`
 
             if ((player.y < 0 || player.y > 100) || (closest && is_colliding(player, closest))) {
                 player.die()
