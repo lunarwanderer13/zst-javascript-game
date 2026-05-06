@@ -212,6 +212,10 @@ function main() {
             event.preventDefault();
             reset_game();
         }
+        if (event.code === "KeyR" && !event.repeat) {
+            event.preventDefault();
+            location.reload();
+        }
     });
     // Button used for jumping, and if the game is paused, starting the game
     const jump_button = document.querySelector("button#jump-button");
