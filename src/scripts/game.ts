@@ -214,9 +214,14 @@ function main(): void {
     // Listeners for user input
     end_button.addEventListener("pointerup", reset_game)             // Button click
     document.addEventListener("keydown", (event: KeyboardEvent) => { // Space or enter press
-        if((event.code === "Space" || event.code === "Enter") && !event.repeat) {
+        if ((event.code === "Space" || event.code === "Enter") && !event.repeat) {
             event.preventDefault()
             reset_game()
+        }
+
+        if (event.code === "KeyR" && !event.repeat) {
+            event.preventDefault()
+            location.reload()
         }
     })
 
