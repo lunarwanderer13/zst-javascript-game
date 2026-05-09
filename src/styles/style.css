@@ -1,9 +1,13 @@
 :root {
-    --primary-bg-color: #fcfcfc;
-    --accent-bg-color: #ececec;
+    --light-primary-bg-color: #fcfcfc;
+    --dark-primary-bg-color: #0c0c0c;
+    --light-accent-bg-color: #ececec;
+    --dark-accent-bg-color: #1c1c1c;
     --modal-bg-color: #00000033;
-    --selected-bg-color: #dcdcdc;
-    --text-color: #000000;
+    --light-selected-bg-color: #dcdcdc;
+    --dark-selector-bg-color: #4c4c4c;
+    --light-text-color: #000000;
+    --dark-text-color: #ffffff;
     --border: 1px solid #000000;
     --border-radius: 5vh;
 }
@@ -17,6 +21,7 @@
 
 * {
     font-family: "Fredoka One", "Comic Sans MS", sans-serif, serif;
+    color: var(--light-text-color);
     text-align: center;
     overflow: hidden;
     -webkit-user-select: none;
@@ -38,7 +43,7 @@ body, main, main header, main header h1, main header h3, div.modal, div.modal-bo
 body {
     height: 100vh;
     justify-content: start;
-    background-color: var(--primary-bg-color);
+    background-color: var(--light-primary-bg-color);
 }
 
 main {
@@ -67,7 +72,7 @@ main header h3 {
     width: 20vh;
     height: 5vh;
     font-size: 2.5vh;
-    background-color: var(--accent-bg-color);
+    background-color: var(--light-accent-bg-color);
     border: var(--border);
     border-radius: var(--border-radius);
     visibility: hidden;
@@ -85,7 +90,7 @@ div.button-container button {
     height: 20vh;
     margin: 5vh 10vw;
     font-size: 5vh;
-    background-color: var(--accent-bg-color);
+    background-color: var(--light-accent-bg-color);
     border: var(--border);
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -97,7 +102,7 @@ img#settings-button {
     top: 1vw;
     width: max(2vw, 2vh);
     aspect-ratio: 1 / 1;
-    background-color: var(--accent-bg-color);
+    background-color: var(--light-accent-bg-color);
     margin: 0;
     padding: 0.25vw;
     border-radius: 100%;
@@ -123,7 +128,7 @@ aside.settings-panel {
     left: -100vw;
     width: min(90vw, 90vh);
     height: 90vh;
-    background-color: var(--primary-bg-color);
+    background-color: var(--light-primary-bg-color);
     border: var(--border);
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
@@ -175,20 +180,20 @@ aside.settings-panel section div img {
     height: 10vh;
     margin: 1vh;
     padding: 1vh;
-    background-color: var(--primary-bg-color);
+    background-color: var(--light-primary-bg-color);
     border: var(--border);
     border-radius: 1vh;
     transition: 0.5s;
 }
 
 aside.settings-panel section div img:hover {
-    background-color: var(--selected-bg-color);
+    background-color: var(--light-selected-bg-color);
     transition: 0.5s;
 }
 
 aside.settings-panel section div img.active-player,
 aside.settings-panel section div img.active-bg {
-    background-color: var(--selected-bg-color);
+    background-color: var(--light-selected-bg-color);
     transition: 0.5s;
 }
 
@@ -207,7 +212,7 @@ aside.settings-panel footer button {
     height: 4vh;
     margin: 0 1vh;
     font-size: 2vh;
-    background-color: var(--accent-bg-color);
+    background-color: var(--light-accent-bg-color);
     border: var(--border);
     border-radius: var(--border-radius);
     cursor: pointer;
