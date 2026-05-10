@@ -35,14 +35,7 @@
     transition:
         background-color 0.25s,
         color 0.25s,
-        border-color 0.25s,
-        top 0.25s,
-        right 0.25s,
-        bottom 0.25s,
-        left 0.25s,
-        width 0.25s,
-        height 0.25s,
-        rotate 0.5s;
+        border-color 0.25s;
 }
 
 body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container {
@@ -124,6 +117,14 @@ img#settings-button {
     border: var(--border);
     border-radius: 100%;
     z-index: 666;
+    transition:
+        top 0.25s,
+        right 0.25s,
+        bottom 0.25s,
+        left 0.25s,
+        width 0.25s,
+        height 0.25s,
+        rotate 0.5s;
 }
 
 img#settings-button:hover {
