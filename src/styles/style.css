@@ -4,7 +4,7 @@
     --modal-bg-color: #00000033;
     --selected-bg-color: #dcdcdc;
     --text-color: #000000;
-    --border: 1px solid #000000;
+    --border-color: #000000;
     --border-radius: 5vh;
 }
 
@@ -13,7 +13,7 @@
     --accent-bg-color: #1c1c1c;
     --selected-bg-color: #4c4c4c;
     --text-color: #ffffff;
-    --border: 1px solid #ffffff;
+    --border-color: #ffffff;
 }
 
 @font-face {
@@ -81,7 +81,8 @@ main header h3 {
     height: 5vh;
     font-size: 2.5vh;
     background-color: var(--accent-bg-color);
-    border: var(--border);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-radius: var(--border-radius);
     visibility: hidden;
 }
@@ -99,7 +100,8 @@ div.button-container button {
     margin: 5vh 10vw;
     font-size: 5vh;
     background-color: var(--accent-bg-color);
-    border: var(--border);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-radius: var(--border-radius);
     cursor: pointer;
 }
@@ -114,7 +116,8 @@ img#settings-button {
     background-color: var(--accent-bg-color);
     margin: 0;
     padding: 0.25vw;
-    border: var(--border);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-radius: 100%;
     z-index: 666;
     transition:
@@ -145,7 +148,8 @@ aside.settings-panel {
     width: min(90vw, 90vh);
     height: 90vh;
     background-color: var(--primary-bg-color);
-    border: var(--border);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
     padding: 0 min(1vw, 1vh);
@@ -197,7 +201,8 @@ aside.settings-panel section div img {
     margin: 1vh;
     padding: 1vh;
     background-color: var(--primary-bg-color);
-    border: var(--border);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-radius: 1vh;
 }
 
@@ -242,7 +247,8 @@ aside.settings-panel footer div button {
     margin: 0 1vh;
     font-size: 2vh;
     background-color: var(--accent-bg-color);
-    border: var(--border);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-radius: var(--border-radius);
     cursor: pointer;
 }
