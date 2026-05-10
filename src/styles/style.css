@@ -33,9 +33,16 @@
     -webkit-user-drag: none;
     touch-action: manipulation;
     transition:
-        background-color 0.25s linear,
-        color 0.25s linear,
-        border-color 0.25s linear;
+        background-color 0.25s,
+        color 0.25s,
+        border-color 0.25s,
+        top 0.25s,
+        right 0.25s,
+        bottom 0.25s,
+        left 0.25s,
+        width 0.25s,
+        height 0.25s,
+        rotate 0.5s;
 }
 
 body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container {
@@ -110,6 +117,7 @@ img#settings-button {
     top: 1vw;
     width: max(2vw, 2vh);
     aspect-ratio: 1 / 1;
+    rotate: 0deg;
     background-color: var(--accent-bg-color);
     margin: 0;
     padding: 0.25vw;
@@ -122,7 +130,7 @@ img#settings-button:hover {
     left: 0.5vw;
     top: 0.5vw;
     width: max(3vw, 3vh);
-    aspect-ratio: 1 / 1;
+    rotate: 180deg;
 }
 
 aside.settings-panel {
