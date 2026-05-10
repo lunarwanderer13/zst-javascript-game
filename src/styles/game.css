@@ -6,7 +6,7 @@
     background-size: min(10vw, 10vh);
     background-repeat: repeat;
     background-position-x: 0px;
-    border: var(--light-border);
+    border: var(--border);
     border-radius: var(--border-radius);
 }
 

@@ -19,8 +19,8 @@ div.modal-body {
     width: 80vw;
     height: 80vh;
     justify-content: space-between;
-    background-color: var(--light-primary-bg-color);
-    border: var(--light-border);
+    background-color: var(--primary-bg-color);
+    border: var(--border);
     border-radius: var(--border-radius);
 }
 
@@ -89,8 +89,8 @@ div.modal-body button {
     width: 40vw;
     height: 10vh;
     font-size: 2.5vh;
-    background-color: var(--light-accent-bg-color);
-    border: var(--light-border);
+    background-color: var(--accent-bg-color);
+    border: var(--border);
     border-radius: var(--border-radius);
     margin-bottom: 10vh;
     cursor: pointer;
