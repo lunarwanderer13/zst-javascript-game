@@ -201,14 +201,30 @@ aside.settings-panel section div img.active-bg {
 
 aside.settings-panel footer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: fit-content;
+    width: 100%;
     height: 10vh;
 }
 
-aside.settings-panel footer button {
+aside.settings-panel footer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 10vh;
+}
+
+aside.settings-panel footer div.highscore-reset-container {
+    flex-direction: column;
+}
+
+aside.settings-panel footer div.dark-mode-container {
+    flex-direction: row;
+}
+
+aside.settings-panel footer div button {
     all: unset;
     width: 25vh;
     height: 4vh;
@@ -220,7 +236,7 @@ aside.settings-panel footer button {
     cursor: pointer;
 }
 
-aside.settings-panel footer span {
+aside.settings-panel footer div span {
     width: 25vh;
     font-size: 2vh;
 }
