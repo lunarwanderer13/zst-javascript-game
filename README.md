@@ -10,7 +10,7 @@ Super-Cat is the name of our final programming project for the class of 2026, fe
 To install the game locally, follow these steps:  
 
 ### 1. Clone the repository
-`https://github.com/lunarwanderer13/zst-javascript-game.git` or any of your preferred cloning options  
+`git clone https://github.com/lunarwanderer13/zst-javascript-game.git` or any of your preferred cloning options  
 
 ### 2. Enter the repository
 `cd zst-javascript-game`  
