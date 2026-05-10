@@ -33,9 +33,9 @@
     -webkit-user-drag: none;
     touch-action: manipulation;
     transition:
-        background-color 0.5s,
-        color 0.5s,
-        border-color 0.5s;
+        background-color 0.25s linear,
+        color 0.25s linear,
+        border-color 0.25s linear;
 }
 
 body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container {
