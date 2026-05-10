@@ -102,9 +102,30 @@ function main(): void {
     // Highscore display
     const highscore_display: HTMLSpanElement | null = document.querySelector<HTMLSpanElement>("span#highscore-display")
     if (!highscore_display) return
-    
+
     if (localStorage.getItem("highscore")) highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`
     else highscore_display.innerText = "Current highscore: 0"
+
+    // Dark mode checkbox
+    const dark_mode_checkbox: HTMLInputElement | null = document.querySelector<HTMLInputElement>("input#dark-mode-checkbox")
+    if (!dark_mode_checkbox) return
+
+    function toggle_theme(): void {
+        if (!dark_mode_checkbox) return
+
+        let enabled: string = String(dark_mode_checkbox.checked)
+        localStorage.setItem("dark-mode", enabled)
+
+        if (enabled === "false") document.documentElement.setAttribute("data-theme", "light")
+        else document.documentElement.setAttribute("data-theme", "dark")
+    }
+
+    if (localStorage.getItem("dark-mode") !== "true") localStorage.setItem("dark-mode", "false")
+    else {
+        dark_mode_checkbox.checked = true
+        toggle_theme()
+    }
+    dark_mode_checkbox.addEventListener("change", toggle_theme)
 
     // Toggles the settings panel
     function trigger_settings(): void {

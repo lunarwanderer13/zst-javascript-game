@@ -8,6 +8,14 @@
     --border-radius: 5vh;
 }
 
+[data-theme="dark"] {
+    --primary-bg-color: #0c0c0c;
+    --accent-bg-color: #1c1c1c;
+    --selected-bg-color: #4c4c4c;
+    --text-color: #ffffff;
+    --border: 1px solid #ffffff;
+}
+
 @font-face {
     font-family: "Fredoka One";
     src: url(../fonts/fredoka-one/FredokaOne-Regular.ttf);
@@ -17,12 +25,17 @@
 
 * {
     font-family: "Fredoka One", "Comic Sans MS", sans-serif, serif;
+    color: var(--text-color);
     text-align: center;
     overflow: hidden;
     -webkit-user-select: none;
     user-select: none;
     -webkit-user-drag: none;
     touch-action: manipulation;
+    transition:
+        background-color 0.25s linear,
+        color 0.25s linear,
+        border-color 0.25s linear;
 }
 
 body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container {
@@ -100,9 +113,9 @@ img#settings-button {
     background-color: var(--accent-bg-color);
     margin: 0;
     padding: 0.25vw;
+    border: var(--border);
     border-radius: 100%;
     z-index: 666;
-    transition: 0.25s;
 }
 
 img#settings-button:hover {
@@ -110,7 +123,6 @@ img#settings-button:hover {
     top: 0.5vw;
     width: max(3vw, 3vh);
     aspect-ratio: 1 / 1;
-    transition: 0.25s;
 }
 
 aside.settings-panel {
@@ -178,30 +190,43 @@ aside.settings-panel section div img {
     background-color: var(--primary-bg-color);
     border: var(--border);
     border-radius: 1vh;
-    transition: 0.5s;
 }
 
 aside.settings-panel section div img:hover {
     background-color: var(--selected-bg-color);
-    transition: 0.5s;
 }
 
 aside.settings-panel section div img.active-player,
 aside.settings-panel section div img.active-bg {
     background-color: var(--selected-bg-color);
-    transition: 0.5s;
 }
 
 aside.settings-panel footer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: fit-content;
+    width: 100%;
     height: 10vh;
 }
 
-aside.settings-panel footer button {
+aside.settings-panel footer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 10vh;
+}
+
+aside.settings-panel footer div.highscore-reset-container {
+    flex-direction: column;
+}
+
+aside.settings-panel footer div.dark-mode-container {
+    flex-direction: row;
+}
+
+aside.settings-panel footer div button {
     all: unset;
     width: 25vh;
     height: 4vh;
@@ -213,7 +238,7 @@ aside.settings-panel footer button {
     cursor: pointer;
 }
 
-aside.settings-panel footer span {
+aside.settings-panel footer div span {
     width: 25vh;
     font-size: 2vh;
 }

@@ -102,6 +102,27 @@ function main() {
         highscore_display.innerText = `Current highscore: ${localStorage.getItem("highscore")}`;
     else
         highscore_display.innerText = "Current highscore: 0";
+    // Dark mode checkbox
+    const dark_mode_checkbox = document.querySelector("input#dark-mode-checkbox");
+    if (!dark_mode_checkbox)
+        return;
+    function toggle_theme() {
+        if (!dark_mode_checkbox)
+            return;
+        let enabled = String(dark_mode_checkbox.checked);
+        localStorage.setItem("dark-mode", enabled);
+        if (enabled === "false")
+            document.documentElement.setAttribute("data-theme", "light");
+        else
+            document.documentElement.setAttribute("data-theme", "dark");
+    }
+    if (localStorage.getItem("dark-mode") !== "true")
+        localStorage.setItem("dark-mode", "false");
+    else {
+        dark_mode_checkbox.checked = true;
+        toggle_theme();
+    }
+    dark_mode_checkbox.addEventListener("change", toggle_theme);
     // Toggles the settings panel
     function trigger_settings() {
         if (!settings_panel)
