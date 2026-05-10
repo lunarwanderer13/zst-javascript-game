@@ -32,6 +32,10 @@
     user-select: none;
     -webkit-user-drag: none;
     touch-action: manipulation;
+    transition:
+        background-color 0.5s,
+        color 0.5s,
+        border-color 0.5s;
 }
 
 body, main, main header, main header h1, main header h3, div.modal, div.modal-body, main div.game-container, div.button-container {
@@ -112,7 +116,6 @@ img#settings-button {
     border: var(--border);
     border-radius: 100%;
     z-index: 666;
-    transition: 0.25s;
 }
 
 img#settings-button:hover {
@@ -120,7 +123,6 @@ img#settings-button:hover {
     top: 0.5vw;
     width: max(3vw, 3vh);
     aspect-ratio: 1 / 1;
-    transition: 0.25s;
 }
 
 aside.settings-panel {
@@ -188,18 +190,15 @@ aside.settings-panel section div img {
     background-color: var(--primary-bg-color);
     border: var(--border);
     border-radius: 1vh;
-    transition: 0.5s;
 }
 
 aside.settings-panel section div img:hover {
     background-color: var(--selected-bg-color);
-    transition: 0.5s;
 }
 
 aside.settings-panel section div img.active-player,
 aside.settings-panel section div img.active-bg {
     background-color: var(--selected-bg-color);
-    transition: 0.5s;
 }
 
 aside.settings-panel footer {
