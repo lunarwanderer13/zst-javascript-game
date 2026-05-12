@@ -108,9 +108,9 @@ div.button-container button {
 
 img#settings-button {
     position: fixed;
-    left: 1vw;
-    top: 1vw;
-    width: max(2vw, 2vh);
+    left: 12.5vw;
+    top: 12.5vh;
+    width: max(3vw, 6vh);
     aspect-ratio: 1 / 1;
     rotate: 0deg;
     background-color: var(--accent-bg-color);
@@ -131,9 +131,9 @@ img#settings-button {
 }
 
 img#settings-button:hover {
-    left: 0.5vw;
-    top: 0.5vw;
-    width: max(3vw, 3vh);
+    left: 12vw;
+    top: 12vh;
+    width: max(4vw, 8vh);
     rotate: 180deg;
 }
 
