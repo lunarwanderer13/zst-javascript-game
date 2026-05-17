@@ -103,7 +103,7 @@ div.button-container button {
 
 img#settings-button {
     position: fixed;
-    left: 12.5vw;
+    right: 12.5vw;
     top: 12.5vh;
     width: max(3vw, 6vh);
     aspect-ratio: 1 / 1;
@@ -114,7 +114,7 @@ img#settings-button {
     border: 1px solid;
     border-color: var(--border-color);
     border-radius: 100%;
-    z-index: 666;
+    z-index: 3000;
     transition:
         top 0.25s,
         right 0.25s,
@@ -126,7 +126,7 @@ img#settings-button {
 }
 
 img#settings-button:hover {
-    left: 12vw;
+    right: 12vw;
     top: 12vh;
     width: max(4vw, 8vh);
     rotate: 180deg;
