@@ -67,12 +67,7 @@ main header {
     gap: 10vw;
 }
 
-main header h1, div.modal div h1 {
-    width: 20vh;
-    height: 10vh;
-}
-
-main header h1 img, div.modal div h1 img {
+main header h1, main header h1 img, div.modal div h1, div.modal div h1 img {
     height: 10vh;
 }
 
